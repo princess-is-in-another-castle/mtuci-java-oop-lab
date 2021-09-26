@@ -1,1 +1,1 @@
-# mtuci-java-oop-lab
+# mtuci-java-oop-lab - Лабораторные работы
