@@ -1,7 +1,8 @@
+import java.text.DecimalFormat;
+
 /**
  * Трёхмерный класс точки
  **/
-
 public class Point3d {
     /**
      * координата X
@@ -11,7 +12,6 @@ public class Point3d {
      * координата Y
      **/
     private double yCoord;
-
     /**
      * координата Z
      */
@@ -20,15 +20,16 @@ public class Point3d {
     /**
      * Конструктор инициализации
      **/
-
     public Point3d(double x, double y, double z) {
         xCoord = x;
         yCoord = y;
         zCoord = z;
     }
 
+    /**
+     * Конструктом задаёт по умолчанию нулевые значения, если не передаю никакие аргументы.
+     */
     public Point3d() {
-        // Вызовите конструктор с тремя параметрами и определите источник.
         this(0, 0, 0);
     }
 
@@ -75,25 +76,40 @@ public class Point3d {
     }
 
     /**
-     * Сравнивает объект с другим
+     * Сравнивает объект с другим.
      *
      * @param object
      * @return
      */
-    public boolean isEquals(Point3d object) {
+    public boolean isEqual(Point3d object) {
         return this.getX() == object.getX() &&
                 this.getY() == object.getY() &&
                 this.getZ() == object.getZ();
     }
 
     /**
+     * Высчитывает растояние между двумя точками и возвращает дистанцию.
      *
      * @param object
      * @return
      */
     public double distanceTo(Point3d object) {
-        return Math.sqrt(Math.pow(xCoord - object.getX(), 2) +
+        double distance = Math.sqrt(Math.pow(xCoord - object.getX(), 2) +
                 Math.pow(yCoord - object.getY(), 2) +
                 Math.pow(zCoord - object.getZ(), 2));
+        return roundNumbers(distance);
     }
+
+    /**
+     * Округляет Double числа до двух знаков после точки.
+     *
+     * @param number
+     * @return
+     */
+    public static double roundNumbers(double number) {
+        DecimalFormat df = new DecimalFormat("##.##");
+        String finalValue = df.format(number).replace(',', '.');
+        return Double.parseDouble(finalValue);
+    }
+
 }
