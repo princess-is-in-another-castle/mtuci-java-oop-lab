@@ -6,3 +6,5 @@ first-project/.idea
 first-project/out
 second-project/build
 second-project/.idea
+tasks/.idea
+tasks/build
